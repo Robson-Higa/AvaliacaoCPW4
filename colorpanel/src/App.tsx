@@ -7,11 +7,12 @@ const App = () => {
   const [red, setRed] = useState<number>(0);
   const [green, setGreen] = useState<number>(0);
   const [blue, setBlue] = useState<number>(0);
-  const [alpha, setAlpha] = useState<number>(1);
+  const [alpha, setAlpha] = useState<number>(0.5);
  
   return (
-    <div className={style.panel}>
-          <div>
+    <div className={style.container}>
+      <ColorPanel red={red} green={green} blue={blue} alpha={alpha} />
+      <div className={style.input}>
         <label>
           Red
           <input
@@ -54,8 +55,6 @@ const App = () => {
           />
         </label>
       </div>
-      <ColorPanel red={red} green={green} blue={blue} alpha={alpha} />
-
     </div>
   );
 };

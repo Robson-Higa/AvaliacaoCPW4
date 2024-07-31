@@ -4,12 +4,16 @@ describe("e2e tests", () => {
     //cy.fixture("values.json").as("values");
   });
    it('should show a color correctly', function () {
-    cy.get(':nth-child(1) > input').invoke('val', '100').trigger('change');
-    cy.get(':nth-child(2) > input').invoke('val', '15').trigger('change');
-    cy.get(':nth-child(3) > input').invoke('val', '20').trigger('change');
-    cy.get(':nth-child(4) > input').invoke('val', '0.8').trigger('input');
+    const red: number = 255;
+    const green: number = 0;
+    const blue: number = 0;
+    const alpha: number = 0.5;
+    cy.get(':nth-child(1) > input').invoke('val', red).trigger('change');
+    cy.get(':nth-child(2) > input').invoke('val', green).trigger('change');
+    cy.get(':nth-child(3) > input').invoke('val', blue).trigger('change');
+    cy.get(':nth-child(4) > input').invoke('val', alpha).trigger('change');
     cy.wait(1000); 
-    cy.get('.styles_panel__Dze9I').should('have.css', 'background-color', `rgba(100, 15, 20, 0.8)`);
+    cy.get('.styles_panel__JmTVJ').should('have.css', 'background-color', `rgba(${red}, ${green}, ${blue}, ${alpha})`);
 
   })
 });
