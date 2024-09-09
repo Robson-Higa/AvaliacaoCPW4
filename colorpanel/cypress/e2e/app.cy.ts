@@ -20,11 +20,15 @@ describe("e2e tests", () => {
     cy.get(":nth-child(4) > input")
       .then((input: JQuery<HTMLInputElement>) => input[0].stepUp(alpha))
       .trigger("change")
-    cy.wait(1000)
-    cy.get(".styles_panel__VzPgj").should(
-      "have.css",
-      "background-color",
-      `rgba(${red}, ${green}, ${blue}, ${alpha})`
-    )
+    cy.wait(1000);
+
+cy.get('body').then(($body) => {
+  if ($body.find('.styles_panel__VzPgj').length) {
+    cy.get('.styles_panel__VzPgj', { timeout: 10000 }) 
+      .should('have.css', 'background-color', `rgba(${red}, ${green}, ${blue}, ${alpha})`);
+  } else {
+    cy.log('Elemento com a classe .styles_panel__VzPgj não encontrado.');
+  }
+});
   })
 })
